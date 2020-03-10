@@ -106,7 +106,16 @@ public class Employe {
 
     //Augmenter salaire
     public double augmenterSalaire(double pourcentage){
-        return pourcentage;
+        //On considère que l'appel à la méthode est forcément dans le but d'augmenter un employé
+        //Donc les pourcentages négatifs et/ou inférieurs à 1 seront des erreurs de saisie
+        //Pourcentage négatif
+        if(pourcentage < 0.0)
+            pourcentage = pourcentage * -1;//Le pourcentage redevient positif
+        else if(pourcentage>0 && pourcentage < 1.0)
+            pourcentage = pourcentage + 1;//Le pourcentage augmente forcément le salaire
+
+        double augmentation = this.getSalaire() * (1 + pourcentage);
+        return augmentation;
     }
 
     public Long getId() {

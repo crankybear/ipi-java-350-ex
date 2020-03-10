@@ -102,11 +102,25 @@ public class EmployeTest {
         employe.setSalaire(1000.0);
 
         //When
-        //Diminution salaire -> pourcentage = -10.0
+        //Coeff negatif -> pourcentage = -10.0
         double coeff = employe.augmenterSalaire(-10.0);
 
         //Then
         Assertions.assertThat(employe.getSalaire()).isNegative();
+    }
+    @Test
+    public void testDiminutionSalaire(){
+        //Given
+        Employe employe = new Employe();
+        employe.setSalaire(1000.0);
+        double salaireInitial = employe.getSalaire();
+
+        //When
+        //Diminution salaire -> pourcentage > 0 && pourcentage < 1
+        double coeff = employe.augmenterSalaire(0.5);
+
+        //Then
+        Assertions.assertThat(employe.getSalaire()).isLessThan(salaireInitial);
     }
 
 
