@@ -109,13 +109,17 @@ public class Employe {
         //On considère que l'appel à la méthode est forcément dans le but d'augmenter un employé
         //Donc les pourcentages négatifs et/ou inférieurs à 1 seront des erreurs de saisie
         //Pourcentage négatif
-        if(pourcentage < 0.0)
-            pourcentage = pourcentage * -1;//Le pourcentage redevient positif
-        else if(pourcentage>0 && pourcentage < 1.0)
-            pourcentage = pourcentage + 1;//Le pourcentage augmente forcément le salaire
+        //Conditions de -1.0 à 0.0 en rapport avec declaration ligne 118
+        if(pourcentage < -1.0)
+            pourcentage = pourcentage * -1.0;//Le pourcentage redevient positif
+        else if(pourcentage>-1.0 && pourcentage < 0.0)
+            pourcentage = pourcentage + 1.0;//Le pourcentage augmente forcément le salaire
 
-        double augmentation = this.getSalaire() * (1 + pourcentage);
+        double augmentation = this.getSalaire() * (1.0 + pourcentage/100);
+        //Validation de l'augmentation de salaire
+        this.setSalaire(augmentation);
         return augmentation;
+        //Effectivement, coder la methode avant les tests m'aurait amené à un résultat tout à fait différent
     }
 
     public Long getId() {
