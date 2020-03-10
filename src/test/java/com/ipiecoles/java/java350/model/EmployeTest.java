@@ -59,7 +59,7 @@ public class EmployeTest {
     }
 
     //Test prime annuelle
-    //Performanc, matricule, anciennete, tps partiel, prime
+    //Performance, matricule, anciennete, tps partiel, prime
     @ParameterizedTest()
     @CsvSource({
             "1, 'T12345', 0, 1.0, 1000.0",
@@ -81,4 +81,34 @@ public class EmployeTest {
         //Then
         Assertions.assertThat(primeCalculee).isEqualTo(prime);
     }
+
+    @Test
+    public void testPourcentageAugmentation10(){
+        //Given
+        Employe employe = new Employe();
+        employe.setSalaire(1000.0);
+
+        //When
+        //Augmentation de 10% = 10.0
+        double augmentation = employe.augmenterSalaire(10.0);
+
+        //Then
+        Assertions.assertThat(employe.getSalaire()).isEqualTo(1100.0);
+    }
+    @Test
+    public void testPourcentageAugmentationNegatif(){
+        //Given
+        Employe employe = new Employe();
+        employe.setSalaire(1000.0);
+
+        //When
+        //Diminution salaire -> pourcentage = -10.0
+        double coeff = employe.augmenterSalaire(-10.0);
+
+        //Then
+        Assertions.assertThat(employe.getSalaire()).isNegative();
+    }
+
+
+
 }

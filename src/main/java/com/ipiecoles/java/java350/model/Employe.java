@@ -105,7 +105,9 @@ public class Employe {
     }
 
     //Augmenter salaire
-    //public void augmenterSalaire(double pourcentage){}
+    public double augmenterSalaire(double pourcentage){
+        return pourcentage;
+    }
 
     public Long getId() {
         return id;
