@@ -105,7 +105,7 @@ public class Employe {
     }
 
     //Augmenter salaire
-    public double augmenterSalaire(double pourcentage){
+    public void augmenterSalaire(double pourcentage){
         //On considère que l'appel à la méthode est forcément dans le but d'augmenter un employé
         //Donc les pourcentages négatifs et/ou inférieurs à 1 seront des erreurs de saisie
         //Pourcentage négatif
@@ -118,7 +118,6 @@ public class Employe {
         double augmentation = this.getSalaire() * (1.0 + pourcentage/100);
         //Validation de l'augmentation de salaire
         this.setSalaire(augmentation);
-        return augmentation;
         //Effectivement, coder la methode avant les tests m'aurait amené à un résultat tout à fait différent
     }
 
