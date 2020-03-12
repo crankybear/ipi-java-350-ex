@@ -42,4 +42,16 @@ public class EmployeRepositoryTest {
         //Then
         Assertions.assertThat(lastMatricule).isEqualTo("12345");
     }
+
+    @Test
+    public void testAvgPerformanceWhereMatriculeStartsWith(){
+        //Given
+        Employe commercial = employeRepository.save(new Employe("jean", "jean", "C12345", LocalDate.now(), 2000.0, 5, 1.0));
+        Employe commercial2 = employeRepository.save(new Employe("paul", "paul", "C12346", LocalDate.now(), 2000.0, 3, 1.0));
+        Employe technicien = employeRepository.save(new Employe("francis", "francis", "T12345", LocalDate.now(), 1500.0, 2, 1.0));
+        //When
+        Double moyennePerf = employeRepository.avgPerformanceWhereMatriculeStartsWith("C");
+        //Then
+        Assertions.assertThat(moyennePerf).isEqualTo(4.0);
+    }
 }
